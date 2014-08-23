@@ -10,9 +10,12 @@
         <item>Disgust</item>
         <item>Happiness</item>
         <item>Anger</item>
-        <item>Apathetic</item>
-        <item>Lazy</item>
-        <item>Scared</item>
+        <item>Excitement</item>
+        <item>Desire</item>
+        <item>Fear</item>
+        <item>Power</item>
+        <item>Calmness</item>
+        <item>Safety</item>
     </string-array>
 
     <string-array name="company_array">
