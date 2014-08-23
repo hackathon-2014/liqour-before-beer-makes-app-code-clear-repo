@@ -13,6 +13,8 @@ import com.ben.maliek.logovoter.R;
 
 public class HomeActivity extends Activity {
 
+    public static String SERVER_ROOT = "http://192.168.8.23";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +54,9 @@ public class HomeActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.change_server_location) {
+            ServerChoiceFragment dialog = new ServerChoiceFragment();
+            dialog.show(getFragmentManager(), "serverChoice");
         }
         return super.onOptionsItemSelected(item);
     }
