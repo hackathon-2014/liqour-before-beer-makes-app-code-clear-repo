@@ -56,9 +56,9 @@ public class LogoComparisonActivity extends Activity {
 
         Log.d("whatchamacallit guys", companies[company1Int] + " " + companies[company2Int] + " " + feels[feelInt]);
         // fill in the logos
-        int resID = res.getIdentifier(companies[company1Int].toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+        int resID = res.getIdentifier(makesafe(companies[company1Int]), "drawable", LogoComparisonActivity.this.getPackageName());
         company1LogoView.setImageDrawable(res.getDrawable(resID));
-        resID = res.getIdentifier(companies[company2Int].toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+        resID = res.getIdentifier(makesafe(companies[company2Int]), "drawable", LogoComparisonActivity.this.getPackageName());
         company2LogoView.setImageDrawable(res.getDrawable(resID));
 
          // set the onlicks
@@ -83,6 +83,13 @@ public class LogoComparisonActivity extends Activity {
                 moveToNext();
             }
         });
+    }
+
+    private String makesafe(String company) {
+        String safeCompany = company.toLowerCase();
+        safeCompany = safeCompany.replace("'", "");
+        return safeCompany;
+
     }
 
     private void sendResult(int company1Int, int company2Int, int feelInt) {

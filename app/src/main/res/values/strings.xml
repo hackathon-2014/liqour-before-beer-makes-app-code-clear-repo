@@ -24,8 +24,9 @@
         <item>Nissan</item>
         <item>McDonald\'s</item>
         <item>Intel</item>
-        <item>Burger King</item>
+        <item>BurgerKing</item>
         <item>Wendy\'s</item>
+        <!--
         <item>Arby\'s</item>
         <item>Sparc</item>
         <item>Mountain Dew</item>
@@ -70,7 +71,7 @@
         <item>Disney</item>
         <item>NSA</item>
         <item>Steam</item>
-
+-->
     </string-array>
 
 </resources>
