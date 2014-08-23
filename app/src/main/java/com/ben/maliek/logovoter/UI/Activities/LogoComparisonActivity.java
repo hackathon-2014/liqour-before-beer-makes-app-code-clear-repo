@@ -1,15 +1,23 @@
 package com.ben.maliek.logovoter.UI.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ben.maliek.logovoter.R;
 
 import java.util.Random;
@@ -17,7 +25,7 @@ import java.util.Random;
 public class LogoComparisonActivity extends Activity {
     private static String[] companies;
     private static String[] feels;
-    private String feel, company1, company2;
+    private int feelInt, company1Int, company2Int;
     private Random r = new Random();
 
     @Override
@@ -34,31 +42,78 @@ public class LogoComparisonActivity extends Activity {
         ImageView company2LogoView = (ImageView)findViewById(R.id.logo2);
 
         // pick two companies
-        company1 = getRandomFromArray(companies, null);
-        company2 = getRandomFromArray(companies, company1);
+        company1Int = getRandomFromArray(companies, -1);
+        company2Int = getRandomFromArray(companies, company1Int);
 
         // pick the feel
-        feel = getRandomFromArray(feels, null);
+        feelInt = getRandomFromArray(feels, -1);
 
         // set the question
-        question.setText("Which Brand Makes You Feel " + feel + "?");
+        question.setText("Which Brand Makes You Feel " + feels[feelInt] + "?");
 
-        Log.d("whatchamacallit guys", company1 + " " + company2 + " " + feel);
+        Log.d("whatchamacallit guys", companies[company1Int] + " " + companies[company2Int] + " " + feels[feelInt]);
         // fill in the logos
-        int resID = res.getIdentifier(company1.toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+        int resID = res.getIdentifier(companies[company1Int].toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
         company1LogoView.setImageDrawable(res.getDrawable(resID));
-        resID = res.getIdentifier(company2.toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+        resID = res.getIdentifier(companies[company2Int].toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
         company2LogoView.setImageDrawable(res.getDrawable(resID));
+
+         // set the onlicks
+        company1LogoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // send server ping
+                sendResult(company1Int, company2Int,feelInt);
+            }
+        });
+
+        company2LogoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendResult(company2Int, company1Int, feelInt);
+            }
+        });
 
 
 
     }
 
-    private String getRandomFromArray(String[] array, String exclude) {
-        String rando = array[r.nextInt(array.length)];
-        if(exclude != null && exclude.equals(rando)){
+    private void sendResult(int company1Int, int company2Int, int feelInt) {
+        String url = "http://192.168.8.23/logomotion/service/battle.php?winner=" + company1Int + "&loser=" + company2Int + "&category=" + feelInt;
+        Log.d("DAT URL", url);
+        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
+        StringRequest req = new StringRequest(url, new Response.Listener<String>(){
+
+            @Override
+            public void onResponse(String s) {
+                Log.d("SUCCESS", "onto the next one");
+                moveToNext();
+            }
+        }, new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                // whoops
+                Log.e("BEN DONE GOOFED", volleyError.getLocalizedMessage());
+            }
+        });
+
+        mRequestQueue.add(req);
+    }
+
+    private void moveToNext() {
+        // on to the next one
+        Intent i = new Intent(LogoComparisonActivity.this, LogoComparisonActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    private int getRandomFromArray(String[] array, int exclude) {
+        int rando = r.nextInt(array.length);
+        while(rando == exclude){
+
             // do it again
-            getRandomFromArray(array, exclude);
+            rando = r.nextInt(array.length);
         }
         return rando;
     }
