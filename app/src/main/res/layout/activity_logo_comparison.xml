@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Which Brand Makes You Feel X?"
-        android:id="@+id/Questioning Textview"
+        android:id="@+id/QuestioningTextview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -25,7 +25,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/logo1"
-        android:layout_below="@+id/Questioning Textview"
+        android:layout_below="@+id/QuestioningTextview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/questionlogo" />
@@ -34,9 +34,9 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:id="@+id/logo2"
-        android:layout_below="@+id/Questioning Textview"
-        android:layout_alignRight="@+id/Questioning Textview"
-        android:layout_alignEnd="@+id/Questioning Textview"
+        android:layout_below="@+id/QuestioningTextview"
+        android:layout_alignRight="@+id/QuestioningTextview"
+        android:layout_alignEnd="@+id/QuestioningTextview"
         android:src="@drawable/questionlogo" />
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="48dp"
-        android:layout_alignRight="@+id/Questioning Textview"
-        android:layout_alignEnd="@+id/Questioning Textview" />
+        android:layout_alignRight="@+id/QuestioningTextview"
+        android:layout_alignEnd="@+id/QuestioningTextview" />
 
 </RelativeLayout>
