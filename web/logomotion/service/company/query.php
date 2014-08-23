@@ -10,11 +10,11 @@ if ($mysqli->connect_errno) {
 if(isset($_GET["id"]))
 {
     $id = intval($_GET["id"]);
-    echo $id;
-    if ($result = $mysqli->query("SELECT * FROM logos WHERE id = ".$id)) {
+    if ($result = $mysqli->query("SELECT * FROM companies WHERE id = ".$id)) {
 
         while($row = mysqli_fetch_array($result)) {
-          echo json_encode($row);
+            $company = array('id' => $row['id'], 'company_name' => $row['company_name'], "industry" => $row['industry']);
+            echo json_encode($company);
         }
 
         $result->close();
@@ -22,12 +22,12 @@ if(isset($_GET["id"]))
 }
 else
 {
-    if ($result = $mysqli->query("SELECT * FROM logos ORDER BY id")) {
+    if ($result = $mysqli->query("SELECT * FROM companies ORDER BY id")) {
         
         $companies = array();
 
         while($row = mysqli_fetch_array($result)) {
-            $company = array('company_name' => $row['company_name']);
+            $company = array('id' => $row['id'], 'company_name' => $row['company_name'], "industry" => $row['industry']);
             $companies[] = $company;
         }
 
