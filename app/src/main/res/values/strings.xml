@@ -61,16 +61,15 @@
         <item>Nintendo</item>
         <item>Sony</item>
         <item>Verizon</item>
-        <item>AT&amp;T</item>
+        <item>ATT</item>
         <item>Comcast</item>
         <item>Tesla</item>
-        <item>Pabst Blue Ribbon</item>
+        <item>PBR</item>
         <item>Github</item>
         <item>Dominos</item>
         <item>Disney</item>
         <item>NSA</item>
         <item>Steam</item>
--->
     </string-array>
 
 </resources>
