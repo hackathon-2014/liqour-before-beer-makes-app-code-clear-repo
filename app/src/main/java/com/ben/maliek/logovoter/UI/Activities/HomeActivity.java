@@ -26,6 +26,16 @@ public class HomeActivity extends Activity {
                 startActivity(i);
             }
         });
+
+        Button leaderboardButton = (Button)findViewById(R.id.leaderboardButton);
+
+        leaderboardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this, LeaderboardActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +41,8 @@ public class LogoComparisonActivity extends Activity {
 
         ImageView company1LogoView = (ImageView)findViewById(R.id.logo1);
         ImageView company2LogoView = (ImageView)findViewById(R.id.logo2);
+
+        Button neitherButton = (Button)findViewById(R.id.neitherButton);
 
         // pick two companies
         company1Int = getRandomFromArray(companies, -1);
@@ -74,19 +77,23 @@ public class LogoComparisonActivity extends Activity {
             }
         });
 
-
-
+        neitherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToNext();
+            }
+        });
     }
 
     private void sendResult(int company1Int, int company2Int, int feelInt) {
-        String url = "http://192.168.8.23/logomotion/service/battle.php?winner=" + company1Int + "&loser=" + company2Int + "&category=" + feelInt;
+        String url = "http://192.168.8.23/logomotion/service/battle/fight.php?winner=" + (company1Int + 1) + "&loser=" + (company2Int+1) + "&category=" + feels[feelInt];
         Log.d("DAT URL", url);
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         StringRequest req = new StringRequest(url, new Response.Listener<String>(){
 
             @Override
             public void onResponse(String s) {
-                Log.d("SUCCESS", "onto the next one");
+                Log.d("SUCCESS", s);
                 moveToNext();
             }
         }, new Response.ErrorListener(){

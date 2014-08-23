@@ -24,6 +24,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ben.maliek.logovoter.UI.Activities.HomeActivity" />
         </activity>
+        <activity
+            android:name=".UI.Activities.LeaderboardActivity"
+            android:label="@string/title_activity_leaderboard"
+            android:parentActivityName=".UI.Activities.HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ben.maliek.logovoter.UI.Activities.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>
