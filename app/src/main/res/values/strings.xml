@@ -20,10 +20,57 @@
     </string-array>
 
     <string-array name="company_array">
-        <item>Mcdonalds</item>
         <item>Nike</item>
-        <item>Intel</item>
         <item>Nissan</item>
+        <item>McDonald\'s</item>
+        <item>Intel</item>
+        <item>Burger King</item>
+        <item>Wendy\'s</item>
+        <item>Arby\'s</item>
+        <item>Sparc</item>
+        <item>Mountain Dew</item>
+        <item>Samsung</item>
+        <item>Google</item>
+        <item>Apple</item>
+        <item>Microsoft</item>
+        <item>Adobe</item>
+        <item>Ford</item>
+        <item>Chevrolet</item>
+        <item>The Pirate Bay</item>
+        <item>Budweiser</item>
+        <item>Coca-Cola</item>
+        <item>Pepsi</item>
+        <item>Red Bull</item>
+        <item>Starbucks</item>
+        <item>Toyota</item>
+        <item>Asus</item>
+        <item>Nabisco</item>
+        <item>Keebler</item>
+        <item>Nestle</item>
+        <item>Umbrella</item>
+        <item>EA</item>
+        <item>Blizzard</item>
+        <item>Black Mesa</item>
+        <item>Aperture Laboratories</item>
+        <item>Walmart</item>
+        <item>Target</item>
+        <item>Facebook</item>
+        <item>Symantec</item>
+        <item>Twitter</item>
+        <item>Lego</item>
+        <item>Nintendo</item>
+        <item>Sony</item>
+        <item>Verizon</item>
+        <item>AT&amp;T</item>
+        <item>Comcast</item>
+        <item>Tesla</item>
+        <item>Pabst Blue Ribbon</item>
+        <item>Github</item>
+        <item>Dominos</item>
+        <item>Disney</item>
+        <item>NSA</item>
+        <item>Steam</item>
+
     </string-array>
 
 </resources>
