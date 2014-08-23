@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class LogoComparisonActivity extends Activity {
     private String[] feels;
     private int feelInt, company1Int, company2Int;
     private boolean choiceMade;
+    private boolean isActive;
     private Random r = new Random();
 
     @Override
@@ -67,8 +69,13 @@ public class LogoComparisonActivity extends Activity {
             feelInt = getRandomFromArray(feels, -1);
         }
 
+        if(choiceMade) {
+            final View loading = findViewById(R.id.loading_box);
+            loading.setVisibility(View.VISIBLE);
+        }
+
         // set the question
-        question.setText("Which Brand Makes You Feel " + feels[feelInt] + "?");
+        question.setText(Html.fromHtml("Which Brand Makes You Feel <font color=\"red\">" + feels[feelInt] + "</font>?"));
 
         Log.d("whatchamacallit guys", companies[company1Int] + " " + companies[company2Int] + " " + feels[feelInt]);
 
@@ -154,11 +161,31 @@ public class LogoComparisonActivity extends Activity {
         mRequestQueue.add(req);
     }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        isActive = false;
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        isActive = true;
+    }
+
     private void moveToNext() {
+        company1Int = -1;
+        company2Int = -1;
+        feelInt = -1;
+        choiceMade = false;
         // on to the next one
-        Intent i = new Intent(LogoComparisonActivity.this, LogoComparisonActivity.class);
-        startActivity(i);
-        finish();
+        if(isActive) {
+            Intent i = new Intent(LogoComparisonActivity.this, LogoComparisonActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
 
     private int getRandomFromArray(String[] array, int exclude) {
@@ -175,6 +202,7 @@ public class LogoComparisonActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
+        isActive = true;
         outState.putInt(COMPANY_1_KEY, company1Int);
         outState.putInt(COMPANY_2_KEY, company2Int);
         outState.putInt(FEEL_KEY, feelInt);
