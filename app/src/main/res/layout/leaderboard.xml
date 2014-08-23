@@ -3,13 +3,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/foo"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFF">
 
     <TextView
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:text="Board of Feels"
+        android:fontFamily="sans_serif_light"
+        android:textSize="48sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_alignParentEnd="true"
