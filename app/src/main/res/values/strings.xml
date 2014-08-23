@@ -26,10 +26,9 @@
         <item>Intel</item>
         <item>BurgerKing</item>
         <item>Wendy\'s</item>
-        <!--
         <item>Arby\'s</item>
         <item>Sparc</item>
-        <item>Mountain Dew</item>
+        <!--<item>Mountain Dew</item>-->
         <item>Samsung</item>
         <item>Google</item>
         <item>Apple</item>
@@ -41,9 +40,9 @@
         <item>Budweiser</item>
         <item>Coca-Cola</item>
         <item>Pepsi</item>
-        <item>Red Bull</item>
+        <item>RedBull</item>
         <item>Starbucks</item>
-        <item>Toyota</item>
+        <!--<item>Toyota</item>
         <item>Asus</item>
         <item>Nabisco</item>
         <item>Keebler</item>
