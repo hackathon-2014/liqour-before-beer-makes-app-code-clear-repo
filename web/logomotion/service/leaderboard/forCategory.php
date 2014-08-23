@@ -23,7 +23,7 @@ if(isset($_GET["category"]))
             else if($cWins > 0){$cPercent = 1;}
             else{$cPercent = 0;}
             
-            $company = array('company_id' => $cId, 'percent' => $cPercent, 'wins' => $cWins, 'losses' => $cLosses);
+            $company = array('company_id' => intval($cId), 'percent' => $cPercent, 'wins' => intval($cWins), 'losses' => intval($cLosses));
             $leaders[] = $company;
         }
         

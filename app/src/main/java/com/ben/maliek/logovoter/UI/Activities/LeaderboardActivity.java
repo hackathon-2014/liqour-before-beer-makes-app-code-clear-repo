@@ -29,6 +29,8 @@ import org.json.JSONObject;
  */
 public class LeaderboardActivity extends Activity{
 
+    private static String[] companies;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class LeaderboardActivity extends Activity{
         String[] feels = res.getStringArray(R.array.feels_array);
 
         final LinearLayout rowContainer = (LinearLayout)findViewById(R.id.feelsrowcontainer);
+        companies = res.getStringArray(R.array.company_array);
 
         // for each feel pump out a view to add to the Scrollview
         for(String feel: feels){
@@ -53,7 +56,8 @@ public class LeaderboardActivity extends Activity{
             JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray jsonArray) {
-                    Log.d("SUCESS", jsonArray.toString());
+                    Log.d("SUCCESS", jsonArray.toString());
+
                     for (int i = 0; i < jsonArray.length(); i++){
                         JSONObject object = null; // lets get stuff
                         try {
@@ -61,12 +65,23 @@ public class LeaderboardActivity extends Activity{
                             LinearLayout innerRowContainer = (LinearLayout)childview.findViewById(R.id.horizontalScrollContainer);
                             // make a new company entry for each
                             View individualView = getLayoutInflater().inflate(R.layout.companyitem, innerRowContainer, false);
-                            //ImageView companyImage = (ImageView)individualView.findViewById(R.id.companyImageView);
-                            //int resID = res.getIdentifier(companies[company2Int].toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+                            ImageView companyImage = (ImageView)individualView.findViewById(R.id.companyImageView);
 
-                            //companyImage.setImageDrawable(res.getDrawable(resID));
+                            int what = object.getInt("company_id");
+                            try {
+                                String companyName = companies[what - 1];
+                                int resID = res.getIdentifier(companyName.toLowerCase(), "drawable", LeaderboardActivity.this.getPackageName());
+                                companyImage.setImageDrawable(res.getDrawable(resID));
+                            }
+                            catch(Exception e)
+                            {
+                                Log.d("FAILURE","NO IMAGE FOR YOU");
+                            }
 
-                            //TextView score = (TextView)individualView.findViewById(R.id.percentageView);
+                            TextView score = (TextView)individualView.findViewById(R.id.percentageView);
+                            String niceFormat = String.format("%.1f%%", object.getDouble("percent")*100.0);
+                            score.setText(niceFormat);
+
                             innerRowContainer.addView(individualView);
 
                         } catch (JSONException e) {
