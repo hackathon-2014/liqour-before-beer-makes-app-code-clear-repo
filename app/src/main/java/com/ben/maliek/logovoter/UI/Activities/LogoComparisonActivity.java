@@ -24,9 +24,15 @@ import com.ben.maliek.logovoter.R;
 import java.util.Random;
 
 public class LogoComparisonActivity extends Activity {
-    private static String[] companies;
-    private static String[] feels;
+    private static final String COMPANY_1_KEY = "Slide to the right";
+    private static final String COMPANY_2_KEY = "Take it back, now, ya'll";
+    private static final String FEEL_KEY = "Turn around";
+    private static final String CHOICE_MADE_KEY = "Reverse!";
+
+    private String[] companies;
+    private String[] feels;
     private int feelInt, company1Int, company2Int;
+    private boolean choiceMade;
     private Random r = new Random();
 
     @Override
@@ -44,12 +50,26 @@ public class LogoComparisonActivity extends Activity {
 
         Button neitherButton = (Button)findViewById(R.id.neitherButton);
 
-        // pick two companies
-        company1Int = getRandomFromArray(companies, -1);
-        company2Int = getRandomFromArray(companies, company1Int);
+        company1Int = company2Int = feelInt = -1;
+        choiceMade = false;
+        if(savedInstanceState != null)
+        {
+            company1Int = savedInstanceState.getInt(COMPANY_1_KEY, -1);
+            company2Int = savedInstanceState.getInt(COMPANY_2_KEY, -1);
+            feelInt = savedInstanceState.getInt(FEEL_KEY, -1);
 
-        // pick the feel
-        feelInt = getRandomFromArray(feels, -1);
+            choiceMade = savedInstanceState.getBoolean(CHOICE_MADE_KEY, false);
+        }
+
+        if(company1Int < 0 || company2Int < 0 || feelInt < 0)
+        {
+            // pick two companies
+            company1Int = getRandomFromArray(companies, -1);
+            company2Int = getRandomFromArray(companies, company1Int);
+
+            // pick the feel
+            feelInt = getRandomFromArray(feels, -1);
+        }
 
         // set the question
         question.setText("Which Brand Makes You Feel " + feels[feelInt] + "?");
@@ -101,6 +121,10 @@ public class LogoComparisonActivity extends Activity {
 
     private void sendResult(int company1Int, int company2Int, int feelInt) {
 
+        //If we already sent our choice, they just tapped it again.
+        if(choiceMade){return;}
+
+        choiceMade = true;
         final View loading = findViewById(R.id.loading_box);
         loading.setVisibility(View.VISIBLE);
 
@@ -145,6 +169,14 @@ public class LogoComparisonActivity extends Activity {
     }
 
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        outState.putInt(COMPANY_1_KEY, company1Int);
+        outState.putInt(COMPANY_2_KEY, company2Int);
+        outState.putInt(FEEL_KEY, feelInt);
+        outState.putBoolean(CHOICE_MADE_KEY, choiceMade);
+    }
 
 
     @Override
