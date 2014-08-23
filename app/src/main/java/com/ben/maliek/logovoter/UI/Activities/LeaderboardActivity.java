@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -34,10 +35,10 @@ public class LeaderboardActivity extends Activity{
         setContentView(R.layout.leaderboard);
 
         // get the feels
-        Resources res = getResources();
+        final Resources res = getResources();
         String[] feels = res.getStringArray(R.array.feels_array);
 
-        LinearLayout rowContainer = (LinearLayout)findViewById(R.id.feelsrowcontainer);
+        final LinearLayout rowContainer = (LinearLayout)findViewById(R.id.feelsrowcontainer);
 
         // for each feel pump out a view to add to the Scrollview
         for(String feel: feels){
@@ -57,8 +58,17 @@ public class LeaderboardActivity extends Activity{
                         JSONObject object = null; // lets get stuff
                         try {
                             object = jsonArray.getJSONObject(i);
+                            LinearLayout innerRowContainer = (LinearLayout)childview.findViewById(R.id.horizontalScrollContainer);
                             // make a new company entry for each
-                            
+                            View individualView = getLayoutInflater().inflate(R.layout.companyitem, innerRowContainer, false);
+                            //ImageView companyImage = (ImageView)individualView.findViewById(R.id.companyImageView);
+                            //int resID = res.getIdentifier(companies[company2Int].toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+
+                            //companyImage.setImageDrawable(res.getDrawable(resID));
+
+                            //TextView score = (TextView)individualView.findViewById(R.id.percentageView);
+                            innerRowContainer.addView(individualView);
+
                         } catch (JSONException e) {
                             // whoops
                             Log.e("BEN DONE GOOFED", e.getLocalizedMessage());
