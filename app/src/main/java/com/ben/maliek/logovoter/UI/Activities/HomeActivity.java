@@ -1,9 +1,11 @@
-package com.ben.maliek.logovoter;
+package com.ben.maliek.logovoter.UI.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.ben.maliek.logovoter.R;
 
 
 public class HomeActivity extends Activity {
