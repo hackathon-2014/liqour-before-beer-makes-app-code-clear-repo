@@ -126,6 +126,12 @@ public class LeaderboardActivity extends Activity{
             JSONArray jsonArray = leaderFeeds.getJSONArray(feel);
             Resources res = getResources();
 
+            View spinner = childview.findViewById(R.id.spinner);
+            View scrollView = childview.findViewById(R.id.horizontalScrollView);
+
+            spinner.setVisibility(View.GONE);
+            scrollView.setVisibility(View.VISIBLE);
+
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = null; // lets get stuff
                 try {
