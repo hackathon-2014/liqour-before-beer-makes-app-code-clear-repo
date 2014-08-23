@@ -6,4 +6,20 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_logo_comparison">LogoComparisonActivity</string>
 
+    <string-array name="feels_array">
+        <item>Disgust</item>
+        <item>Happiness</item>
+        <item>Anger</item>
+        <item>Apathetic</item>
+        <item>Lazy</item>
+        <item>Scared</item>
+    </string-array>
+
+    <string-array name="company_array">
+        <item>Mcdonalds</item>
+        <item>Nike</item>
+        <item>Intel</item>
+        <item>Nissan</item>
+    </string-array>
+
 </resources>

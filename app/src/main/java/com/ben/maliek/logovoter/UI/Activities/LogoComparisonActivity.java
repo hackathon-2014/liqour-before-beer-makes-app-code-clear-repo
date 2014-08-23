@@ -1,17 +1,35 @@
 package com.ben.maliek.logovoter.UI.Activities;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.ben.maliek.logovoter.R;
 
+import java.util.Random;
+import java.util.ResourceBundle;
+
 public class LogoComparisonActivity extends Activity {
+    private static String[] companies;
+    private static String[] feels;
+    private String feel, company1, company2;
+    private Random r = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo_comparison);
+        Resources res = getResources();
+        // get the arrays
+        companies = res.getStringArray(R.array.company_array);
+        feels = res.getStringArray(R.array.feels_array);
+
+        // pick two companies
+
+        // pick the feel
+
+
     }
 
 
