@@ -14,13 +14,14 @@
         android:layout_alignParentTop="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="0.76"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:background="#66000000"
         android:gravity="right"
+        android:singleLine="true"
         android:textColor="@android:color/white"
         android:id="@+id/percentageView"
         android:layout_alignParentBottom="true"
