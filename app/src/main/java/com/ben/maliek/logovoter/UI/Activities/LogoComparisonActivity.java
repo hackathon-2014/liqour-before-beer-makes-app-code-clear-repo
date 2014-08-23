@@ -43,10 +43,13 @@ public class LogoComparisonActivity extends Activity {
         // set the question
         question.setText("Which Brand Makes You Feel " + feel + "?");
 
-        // fill in the logos
-        company1LogoView.ste
-
         Log.d("whatchamacallit guys", company1 + " " + company2 + " " + feel);
+        // fill in the logos
+        int resID = res.getIdentifier(company1.toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+        company1LogoView.setImageDrawable(res.getDrawable(resID));
+        resID = res.getIdentifier(company2.toLowerCase(), "drawable", LogoComparisonActivity.this.getPackageName());
+        company2LogoView.setImageDrawable(res.getDrawable(resID));
+
 
 
     }
