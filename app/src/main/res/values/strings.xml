@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">LogoVoter</string>
+    <string name="app_name">LogoMotion</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_logo_comparison">LogoComparisonActivity</string>
-    <string name="title_activity_leaderboard">Leaderboard Activity</string>
+    <string name="title_activity_logo_comparison">Vote on the Feel!</string>
+    <string name="title_activity_leaderboard">Feels Leaderboard</string>
 
     <string-array name="feels_array">
         <item>Disgust</item>
