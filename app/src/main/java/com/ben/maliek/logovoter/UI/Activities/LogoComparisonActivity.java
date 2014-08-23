@@ -3,17 +3,13 @@ package com.ben.maliek.logovoter.UI.Activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -80,12 +76,19 @@ public class LogoComparisonActivity extends Activity {
             // fill in the logos
             int resID = res.getIdentifier(makesafe(companies[company1Int]), "drawable", LogoComparisonActivity.this.getPackageName());
             company1LogoView.setImageDrawable(res.getDrawable(resID));
-            resID = res.getIdentifier(makesafe(companies[company2Int]), "drawable", LogoComparisonActivity.this.getPackageName());
+        }
+        catch (Exception e)
+        {
+            Log.d("FAILURE","NO PICTURES FOR YOU, IMAGE "+company1Int);
+        }
+
+        try {
+            int resID = res.getIdentifier(makesafe(companies[company2Int]), "drawable", LogoComparisonActivity.this.getPackageName());
             company2LogoView.setImageDrawable(res.getDrawable(resID));
         }
         catch (Exception e)
         {
-            Log.d("FAILURE","NO PICTURES FOR YOU");
+            Log.d("FAILURE","NO PICTURES FOR YOU, IMAGE "+company2Int);
         }
 
          // set the onlicks
@@ -128,7 +131,7 @@ public class LogoComparisonActivity extends Activity {
         final View loading = findViewById(R.id.loading_box);
         loading.setVisibility(View.VISIBLE);
 
-        String url = "http://192.168.8.23/logomotion/service/battle/fight.php?winner=" + (company1Int + 1) + "&loser=" + (company2Int+1) + "&category=" + feels[feelInt];
+        String url = HomeActivity.SERVER_ROOT+"/logomotion/service/battle/fight.php?winner=" + (company1Int + 1) + "&loser=" + (company2Int+1) + "&category=" + feels[feelInt];
         Log.d("DAT URL", url);
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         StringRequest req = new StringRequest(url, new Response.Listener<String>(){
@@ -176,25 +179,5 @@ public class LogoComparisonActivity extends Activity {
         outState.putInt(COMPANY_2_KEY, company2Int);
         outState.putInt(FEEL_KEY, feelInt);
         outState.putBoolean(CHOICE_MADE_KEY, choiceMade);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.logo_comparison, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
