@@ -2,13 +2,17 @@ package com.ben.maliek.logovoter.UI.Activities;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.ben.maliek.logovoter.R;
 
 import java.util.Random;
-import java.util.ResourceBundle;
 
 public class LogoComparisonActivity extends Activity {
     private static String[] companies;
@@ -21,16 +25,42 @@ public class LogoComparisonActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo_comparison);
         Resources res = getResources();
+        TextView question = (TextView)findViewById(R.id.QuestioningTextview);
         // get the arrays
         companies = res.getStringArray(R.array.company_array);
         feels = res.getStringArray(R.array.feels_array);
 
+        ImageView company1LogoView = (ImageView)findViewById(R.id.logo1);
+        ImageView company2LogoView = (ImageView)findViewById(R.id.logo2);
+
         // pick two companies
+        company1 = getRandomFromArray(companies, null);
+        company2 = getRandomFromArray(companies, company1);
 
         // pick the feel
+        feel = getRandomFromArray(feels, null);
+
+        // set the question
+        question.setText("Which Brand Makes You Feel " + feel + "?");
+
+        // fill in the logos
+        company1LogoView.ste
+
+        Log.d("whatchamacallit guys", company1 + " " + company2 + " " + feel);
 
 
     }
+
+    private String getRandomFromArray(String[] array, String exclude) {
+        String rando = array[r.nextInt(array.length)];
+        if(exclude != null && exclude.equals(rando)){
+            // do it again
+            getRandomFromArray(array, exclude);
+        }
+        return rando;
+    }
+
+
 
 
     @Override
