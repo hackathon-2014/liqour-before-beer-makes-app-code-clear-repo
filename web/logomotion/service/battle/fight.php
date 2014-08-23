@@ -12,9 +12,7 @@ if(isset($_GET["winner"]) && isset($_GET["loser"]) && isset($_GET["category"]))
 {
     $winner = intval($_GET["winner"]);
     $loser = intval($_GET['loser']);
-    $category = intval($_GET['category']);
-
-    $categoryName = "disgust";
+    $categoryName = $mysqli->real_escape_string($_GET["category"]);
     
     $winnerCount;
     $loserCount;
