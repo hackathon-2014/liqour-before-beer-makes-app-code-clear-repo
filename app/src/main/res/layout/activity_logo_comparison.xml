@@ -55,4 +55,29 @@
         android:layout_alignRight="@+id/QuestioningTextview"
         android:layout_alignEnd="@+id/QuestioningTextview" />
 
+    <LinearLayout
+        android:id="@+id/loading_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/neitherButton"
+        android:layout_marginTop="50px"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Large.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Submitting..."
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
 </RelativeLayout>

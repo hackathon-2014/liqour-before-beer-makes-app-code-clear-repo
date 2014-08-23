@@ -55,11 +55,18 @@ public class LogoComparisonActivity extends Activity {
         question.setText("Which Brand Makes You Feel " + feels[feelInt] + "?");
 
         Log.d("whatchamacallit guys", companies[company1Int] + " " + companies[company2Int] + " " + feels[feelInt]);
-        // fill in the logos
-        int resID = res.getIdentifier(makesafe(companies[company1Int]), "drawable", LogoComparisonActivity.this.getPackageName());
-        company1LogoView.setImageDrawable(res.getDrawable(resID));
-        resID = res.getIdentifier(makesafe(companies[company2Int]), "drawable", LogoComparisonActivity.this.getPackageName());
-        company2LogoView.setImageDrawable(res.getDrawable(resID));
+
+        try {
+            // fill in the logos
+            int resID = res.getIdentifier(makesafe(companies[company1Int]), "drawable", LogoComparisonActivity.this.getPackageName());
+            company1LogoView.setImageDrawable(res.getDrawable(resID));
+            resID = res.getIdentifier(makesafe(companies[company2Int]), "drawable", LogoComparisonActivity.this.getPackageName());
+            company2LogoView.setImageDrawable(res.getDrawable(resID));
+        }
+        catch (Exception e)
+        {
+            Log.d("FAILURE","NO PICTURES FOR YOU");
+        }
 
          // set the onlicks
         company1LogoView.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +100,10 @@ public class LogoComparisonActivity extends Activity {
     }
 
     private void sendResult(int company1Int, int company2Int, int feelInt) {
+
+        final View loading = findViewById(R.id.loading_box);
+        loading.setVisibility(View.VISIBLE);
+
         String url = "http://192.168.8.23/logomotion/service/battle/fight.php?winner=" + (company1Int + 1) + "&loser=" + (company2Int+1) + "&category=" + feels[feelInt];
         Log.d("DAT URL", url);
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
@@ -101,6 +112,7 @@ public class LogoComparisonActivity extends Activity {
             @Override
             public void onResponse(String s) {
                 Log.d("SUCCESS", s);
+                loading.setVisibility(View.INVISIBLE);
                 moveToNext();
             }
         }, new Response.ErrorListener(){
