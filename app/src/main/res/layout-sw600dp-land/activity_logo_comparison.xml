@@ -20,13 +20,13 @@
         android:layout_alignParentRight="true"
         android:textSize="48sp"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="26dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"/>
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="194dp"
+        android:layout_height="194dp"
         android:layout_marginLeft="48dp"
         android:id="@+id/logo1"
         android:layout_below="@+id/QuestioningTextview"
@@ -60,8 +60,8 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="194dp"
+        android:layout_height="194dp"
         android:id="@+id/logo2"
         android:layout_marginRight="48dp"
         android:layout_below="@+id/QuestioningTextview"
@@ -77,7 +77,7 @@
         android:layout_below="@+id/logo1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="20dp"
         android:layout_alignRight="@+id/QuestioningTextview"
         android:layout_alignEnd="@+id/QuestioningTextview"
         android:background="#512DA8"
