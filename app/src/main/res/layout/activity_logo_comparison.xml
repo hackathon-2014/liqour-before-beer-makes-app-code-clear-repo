@@ -55,7 +55,7 @@
         android:layout_marginTop="64dp"
         android:layout_alignRight="@+id/QuestioningTextview"
         android:layout_alignEnd="@+id/QuestioningTextview"
-        android:background="#512DA8"
+        android:background="@drawable/purplebutton"
         />
 
     <LinearLayout

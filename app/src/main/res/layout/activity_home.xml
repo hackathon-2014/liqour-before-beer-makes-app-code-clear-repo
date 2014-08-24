@@ -46,7 +46,7 @@
         android:id="@+id/playButton"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="#D0D9FF"
+        android:background="@drawable/greybutton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="36dp"
     />
@@ -60,7 +60,7 @@
         android:layout_below="@+id/playButton"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="#512DA8"
+        android:background="@drawable/purplebutton"
         android:layout_centerHorizontal="true" />
 
 
