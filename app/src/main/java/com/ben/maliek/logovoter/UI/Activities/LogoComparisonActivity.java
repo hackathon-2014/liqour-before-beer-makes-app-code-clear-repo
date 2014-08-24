@@ -81,7 +81,7 @@ public class LogoComparisonActivity extends Activity {
 
         try {
             // fill in the logos
-            int resID = res.getIdentifier(makesafe(companies[company1Int]), "drawable", LogoComparisonActivity.this.getPackageName());
+            int resID = res.getIdentifier(LogoComparisonActivity.makesafe(companies[company1Int]), "drawable", LogoComparisonActivity.this.getPackageName());
             company1LogoView.setImageDrawable(res.getDrawable(resID));
         }
         catch (Exception e)
@@ -90,7 +90,7 @@ public class LogoComparisonActivity extends Activity {
         }
 
         try {
-            int resID = res.getIdentifier(makesafe(companies[company2Int]), "drawable", LogoComparisonActivity.this.getPackageName());
+            int resID = res.getIdentifier(LogoComparisonActivity.makesafe(companies[company2Int]), "drawable", LogoComparisonActivity.this.getPackageName());
             company2LogoView.setImageDrawable(res.getDrawable(resID));
         }
         catch (Exception e)
@@ -117,12 +117,13 @@ public class LogoComparisonActivity extends Activity {
         neitherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(choiceMade){return;}
                 moveToNext(R.anim.fade_away_down);
             }
         });
     }
 
-    private String makesafe(String company) {
+    public static String makesafe(String company) {
         String safeCompany = company.toLowerCase();
         safeCompany = safeCompany.replace("'", "");
         return safeCompany;

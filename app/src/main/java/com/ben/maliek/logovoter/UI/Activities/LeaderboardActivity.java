@@ -138,11 +138,11 @@ public class LeaderboardActivity extends Activity{
 
                     int what = object.getInt("company_id");
                     try {
-                        String companyName = companies[what - 1];
+                        String companyName = LogoComparisonActivity.makesafe(companies[what - 1]);
                         int resID = res.getIdentifier(companyName.toLowerCase(), "drawable", LeaderboardActivity.this.getPackageName());
                         companyImage.setImageDrawable(res.getDrawable(resID));
                     } catch (Exception e) {
-                        Log.d("FAILURE", "NO IMAGE FOR YOU");
+                        Log.d("FAILURE", "NO IMAGE FOR YOU, "+what);
                     }
 
                     TextView score = (TextView) individualView.findViewById(R.id.percentageView);
