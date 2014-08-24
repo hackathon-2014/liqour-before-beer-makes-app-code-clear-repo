@@ -43,7 +43,7 @@ public class LogoComparisonActivity extends Activity {
         companies = res.getStringArray(R.array.company_array);
         feels = res.getStringArray(R.array.feels_array);
 
-        ImageView company1LogoView = (ImageView)findViewById(R.id.logo1);
+        final ImageView company1LogoView = (ImageView)findViewById(R.id.logo1);
         ImageView company2LogoView = (ImageView)findViewById(R.id.logo2);
 
         Button neitherButton = (Button)findViewById(R.id.neitherButton);
@@ -103,21 +103,21 @@ public class LogoComparisonActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // send server ping
-                sendResult(company1Int, company2Int,feelInt);
+                sendResult(company1Int, company2Int, feelInt, R.anim.fade_away_left);
             }
         });
 
         company2LogoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendResult(company2Int, company1Int, feelInt);
+                sendResult(company2Int, company1Int, feelInt, R.anim.fade_away_right);
             }
         });
 
         neitherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveToNext();
+                moveToNext(R.anim.fade_away_down);
             }
         });
     }
@@ -129,7 +129,7 @@ public class LogoComparisonActivity extends Activity {
 
     }
 
-    private void sendResult(int company1Int, int company2Int, int feelInt) {
+    private void sendResult(final int winner, int loser, int feelInt, final int animDir) {
 
         //If we already sent our choice, they just tapped it again.
         if(choiceMade){return;}
@@ -138,7 +138,7 @@ public class LogoComparisonActivity extends Activity {
         final View loading = findViewById(R.id.loading_box);
         loading.setVisibility(View.VISIBLE);
 
-        String url = HomeActivity.SERVER_ROOT+"/logomotion/service/battle/fight.php?winner=" + (company1Int + 1) + "&loser=" + (company2Int+1) + "&category=" + feels[feelInt];
+        String url = HomeActivity.SERVER_ROOT+"/logomotion/service/battle/fight.php?winner=" + (winner + 1) + "&loser=" + (loser+1) + "&category=" + feels[feelInt];
         Log.d("DAT URL", url);
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         StringRequest req = new StringRequest(url, new Response.Listener<String>(){
@@ -147,7 +147,7 @@ public class LogoComparisonActivity extends Activity {
             public void onResponse(String s) {
                 Log.d("SUCCESS", s);
                 loading.setVisibility(View.INVISIBLE);
-                moveToNext();
+                moveToNext(animDir);
             }
         }, new Response.ErrorListener(){
 
@@ -175,7 +175,7 @@ public class LogoComparisonActivity extends Activity {
         isActive = true;
     }
 
-    private void moveToNext() {
+    private void moveToNext(int fadeAnim) {
         company1Int = -1;
         company2Int = -1;
         feelInt = -1;
@@ -185,6 +185,7 @@ public class LogoComparisonActivity extends Activity {
             Intent i = new Intent(LogoComparisonActivity.this, LogoComparisonActivity.class);
             startActivity(i);
             finish();
+            overridePendingTransition(0,fadeAnim);
         }
     }
 
