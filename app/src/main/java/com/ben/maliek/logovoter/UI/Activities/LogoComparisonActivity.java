@@ -26,8 +26,8 @@ public class LogoComparisonActivity extends Activity {
     private static final String FEEL_KEY = "Turn around";
     private static final String CHOICE_MADE_KEY = "Reverse!";
 
-    private String[] companies;
-    private String[] feels;
+    private static String[] companies;
+    private static String[] feels;
     private int feelInt, company1Int, company2Int;
     private boolean choiceMade;
     private boolean isActive;
